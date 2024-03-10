@@ -5,14 +5,14 @@ FROM debian:bullseye-slim
 EXPOSE 443
 
 # Copy NGINX configuration file to the container
-COPY ./conf/nginx.conf /etc/nginx/nginx.conf
+COPY ./conf/nginx.conf /etc/nginx/nginx.conf.d
 
 # Refresh the package list
 # Remove the APT package cache to reduce the size of the Docker image
 # Install NGINX and OpenSSL packages (-y installation without user input)
 RUN apt-get update && \
-    rm -rf /var/lib/apt/lists/* && \
-    apt-get install -y nginx openssl
+    rm -rf /var/lib/apt/lists/* 
+RUN apt-get install -y nginx openssl
 
 # Create a directory (/etc/nginx/ssl) where the SSL certificate and private key are stored
 RUN mkdir /etc/nginx/ssl
