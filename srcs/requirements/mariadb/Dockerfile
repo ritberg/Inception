@@ -9,17 +9,11 @@ EXPOSE 443
 RUN apt-get update && apt-get upgrade
 RUN apt-get install -y mariadb-server mariadb-client
 
-# Copy your .sh and .sql files to /var/local/bin/
+# Copy the script .sh (and .sql?) file(s) to /var/local/bin/
 COPY ./tools/db_script.sh /var/local/bin/
 # COPY ./tools/db_database.sql /var/local/bin/
 
-# Copy env variables 
-# COPY ../../.env /etc/.env
-
-# Set env variables
-# ENV $(cat /etc/.env | xargs)
-
-# Give execute permissions to mysqld (daemon)
+# Give execute permissions to mysqld (daemon) and the script
 RUN chmod +x /usr/sbin/mysqld
 RUN chmod +x /var/local/bin/db_script.sh
 
