@@ -3,9 +3,8 @@
 # Start MariaDB server
 service mariadb start
 
-# Wait for mariaDB to start
+# Wait for MariaDB to start
 sleep 5
-
 
 # Create a database | log in to MySQL as root
 echo "CREATE DATABASE ${DB_NAME};" | mariadb -u root

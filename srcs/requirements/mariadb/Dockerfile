@@ -2,7 +2,7 @@
 FROM debian:bullseye
 
 # Set a port
-EXPOSE 443
+EXPOSE 3306
 
 # Refresh the package list
 # Install mariaDB packages (-y installation without user input)

@@ -1,16 +1,19 @@
 # Use Debian as the base image
 FROM debian:bullseye
 
+# Set a port
+EXPOSE 9000
+
 # Refresh the package list
 # Install php-fpm(-y installation without user input)
 RUN apt-get update && apt-get upgrade
-RUN apt-get install -y php7.3-fpm
+RUN apt-get install -y php php-fpm curl
 
 # Copy the www.conf file in php/7.3/fpm/pool.d/
-COPY www.conf /etc/php/7.3/fpm/pool.d/
+COPY ./conf/www.conf /etc/php/7.4/fpm/pool.d/
 
 # Create the php directory to enable php-fpm to run
-RUN mkdir /var/www/html/php
+RUN mkdir /run/php
 
 # Copy the script files
 COPY ./tools/wp_script.sh /var/www/html/php/wp_script.sh
@@ -22,4 +25,6 @@ RUN chmod +x /var/www/html/php/wp_script.sh
 WORKDIR /var/www/html
 
 # Launch php-fpm
-CMD ["php-fpm", "-F"]
+CMD ["/usr/sbin/php-fpm7.4", "-F"]
+
+
