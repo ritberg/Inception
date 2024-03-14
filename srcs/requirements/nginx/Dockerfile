@@ -22,11 +22,8 @@ RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/nginx/ssl/n
 # Run NGINX config (needed?)
 RUN mkdir -p /run/nginx
 
-# Create a directory for website files
-# RUN mkdir -p /usr/share/nginx/html
-
 # Copy html files to the container
-# COPY html /usr/share/nginx/html
+RUN cp -r /var/www/html /usr/share/nginx/html
 
 # Set NGINX as the entrypoint, using the NGINX executable from the local installation
 ENTRYPOINT ["nginx", "-g", "daemon off;"]

@@ -18,5 +18,11 @@ services:
     build: requirements/wordpress
     env_file:
       - .env
+    volumes:
+      - wp-volume:/usr/share/nginx/html/wp-volume
     depends_on:
       - mariadb
+
+volumes:
+  wp-volume:
+

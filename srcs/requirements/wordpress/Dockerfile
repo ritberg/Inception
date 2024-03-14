@@ -7,7 +7,7 @@ EXPOSE 9000
 # Refresh the package list
 # Install php-fpm(-y installation without user input)
 RUN apt-get update && apt-get upgrade
-RUN apt-get install -y php php-fpm curl
+RUN apt-get install -y php php-fpm curl php-mysql php-mysqli
 
 # Copy the www.conf file in php/7.3/fpm/pool.d/
 COPY ./conf/www.conf /etc/php/7.4/fpm/pool.d/
@@ -22,9 +22,9 @@ COPY ./tools/wp_script.sh /var/www/html/php/wp_script.sh
 RUN chmod +x /var/www/html/php/wp_script.sh
 
 # Go to the html directory
-WORKDIR /var/www/html
+WORKDIR /usr/share/nginx/html
+
+# ENTRYPOINT ["/usr/sbin/php-fpm7.4", "-F"]
 
 # Launch php-fpm
-CMD ["/usr/sbin/php-fpm7.4", "-F"]
-
-
+CMD ["bash", "/var/www/html/php/wp_script.sh"]
