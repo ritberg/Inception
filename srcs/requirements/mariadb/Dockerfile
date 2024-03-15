@@ -9,6 +9,9 @@ EXPOSE 3306
 RUN apt-get update && apt-get upgrade
 RUN apt-get install -y mariadb-server mariadb-client
 
+# Copy the .cnf file in /etc/mysql/mariadb.conf.d of the container
+COPY ./conf/50-server.cnf /etc/mysql/mariadb.conf.d
+
 # Copy the script .sh (and .sql?) file(s) to /var/local/bin/
 COPY ./tools/db_script.sh /var/local/bin/
 # COPY ./tools/db_database.sql /var/local/bin/
