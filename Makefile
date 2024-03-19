@@ -32,6 +32,12 @@ restart: stop start
 logs:
 	$(DOCKER_COMPOSE) logs -f
 
+mkdir_data:
+	mkdir -p ~/data/mariadb; mkdir ~/data/wordpress
+
+del_data:
+	rm -rf ~/data
+
 clean:
 	$(DOCKER_COMPOSE) down -v
 
