@@ -1,6 +1,6 @@
 SRC_DIR := srcs
 ENV_FILE := $(SRC_DIR)/.env
-DOCKER_COMPOSE := docker-compose -f $(SRC_DIR)/docker-compose.yml --env-file=$(ENV_FILE)
+DOCKER_COMPOSE := docker-compose -f $(SRC_DIR)/docker-compose.yml
 
 # make without args
 .DEFAULT_GOAL := help

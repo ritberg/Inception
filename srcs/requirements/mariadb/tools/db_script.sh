@@ -4,7 +4,10 @@
 service mariadb start
 
 # Wait for MariaDB to start
-sleep 5
+sleep 10
+
+mkdir -p /var/run/mysqld
+chown mysql:mysql /var/run/mysqld
 
 # Create a database | log in to MySQL as root
 echo "CREATE DATABASE ${DB_NAME};" | mariadb -u root
@@ -22,4 +25,4 @@ echo "ALTER USER 'root'@'localhost' IDENTIFIED BY '${DB_ROOT_PASSWORD}';" | mari
 mysqladmin -u root -p${DB_ROOT_PASSWORD} shutdown
 
 # Enable the database to listen to all IPV4 addresses
-mariadbd --bind-address=0.0.0.0 --user=mysql --datadir=/var/lib/mysql --socket=/var/run/mysqld/mysqld.sock
+mysqld_safe

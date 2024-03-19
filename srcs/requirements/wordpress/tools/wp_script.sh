@@ -28,6 +28,6 @@ cd /usr/share/nginx/html
 wp config create --allow-root --dbname=${DB_NAME} --dbuser=${DB_USER} --dbpass=${DB_PASSWORD} --dbhost=${DB_HOST}
 
 # Install wordpress
-wp core install --allow-root --url=127.0.0.1 --title="My_website" --admin_user=${DB_USER} --admin_password=${DB_ROOT_PASSWORD} --admin_email=${DB_ROOT_EMAIL}
+wp core install --allow-root --url="localhost" --title="My_website" --admin_user=${DB_USER} --admin_password=${DB_ROOT_PASSWORD} --admin_email=${DB_ROOT_EMAIL}
 
 /usr/sbin/php-fpm7.4 -F
