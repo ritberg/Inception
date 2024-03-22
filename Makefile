@@ -1,6 +1,6 @@
 SRC_DIR := srcs
 ENV_FILE := $(SRC_DIR)/.env
-DOCKER_COMPOSE := docker-compose -f $(SRC_DIR)/docker-compose.yml
+DOCKER_COMPOSE := docker compose -f $(SRC_DIR)/docker-compose.yml
 
 # make without args
 .DEFAULT_GOAL := help
@@ -33,14 +33,13 @@ logs:
 	$(DOCKER_COMPOSE) logs -f
 
 mkdir_data:
-	mkdir -p ~/data/mariadb; mkdir ~/data/wordpress
+	mkdir -p /home/mmakarov/data/mariadb; mkdir /home/mmakarov/data/wordpress
 
 del_data:
-	rm -rf ~/data
+	rm -rf /home/mmakarov/data
 
 clean:
 	$(DOCKER_COMPOSE) down -v
 
 clean_cache:
 	docker system prune -af
-

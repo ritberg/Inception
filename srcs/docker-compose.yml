@@ -45,15 +45,14 @@ volumes:
     driver_opts:
       type: "none"
       o: "bind"
-      device: "/Users/mmakarov/data/wordpress"
+      device: "/home/mmakarov/data/wordpress"
   db-volume:
     driver: local
     driver_opts:
       type: "none"
       o: "bind"
-      device: "/Users/mmakarov/data/mariadb"
+      device: "/home/mmakarov/data/mariadb"
   
 networks:
   my-network:
     driver: bridge
-

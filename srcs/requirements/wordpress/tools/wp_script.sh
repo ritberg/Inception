@@ -15,6 +15,9 @@ mv wp-cli.phar /usr/local/bin/wp
 # Download wordpress
 wp core download --allow-root --path=/usr/share/nginx/html
 
+# launch mariadb first
+# sleep 10
+
 # Give permissions 
 chmod 755 /usr/share/nginx/html/*
 

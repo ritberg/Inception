@@ -1,25 +1,23 @@
 #!/bin/bash
 
-# Start MariaDB server
 service mariadb start
 
 # Wait for MariaDB to start
-sleep 10
+sleep 5
 
-mkdir -p /var/run/mysqld
-chown mysql:mysql /var/run/mysqld
+mariadb -u root -e "CREATE DATABASE ${DB_NAME};"
 
-# Create a database | log in to MySQL as root
-echo "CREATE DATABASE ${DB_NAME};" | mariadb -u root
+# Create a user 
+mariadb -u root -e "CREATE USER '${DB_USER}'@'%' IDENTIFIED BY '${DB_PASSWORD}';"
 
 # Create a user with privileges on the database
-echo "GRANT ALL PRIVILEGES ON ${DB_NAME}.* TO '${DB_USER}'@'%' IDENTIFIED BY '${DB_PASSWORD}';" | mariadb -u root
+mariadb -u root -e "GRANT ALL PRIVILEGES ON ${DB_NAME}.* TO '${DB_USER}'@'%';"
 
 # Reload privileges
-echo "FLUSH PRIVILEGES;" | mariadb -u root 
+mariadb -u root -e "FLUSH PRIVILEGES;"
 
 # Set root password 
-echo "ALTER USER 'root'@'localhost' IDENTIFIED BY '${DB_ROOT_PASSWORD}';" | mariadb -u root
+mariadb -u root -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '${DB_ROOT_PASSWORD}';"
 
 # Stop MariaDB server (mariadb stop didn't work)
 mysqladmin -u root -p${DB_ROOT_PASSWORD} shutdown
