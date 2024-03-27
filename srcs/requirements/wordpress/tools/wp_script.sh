@@ -16,7 +16,7 @@ mv wp-cli.phar /usr/local/bin/wp
 wp core download --allow-root --path=/usr/share/nginx/html
 
 # launch mariadb first
-# sleep 10
+sleep 10
 
 # Give permissions 
 chmod 755 /usr/share/nginx/html/*
@@ -31,6 +31,9 @@ cd /usr/share/nginx/html
 wp config create --allow-root --dbname=${DB_NAME} --dbuser=${DB_USER} --dbpass=${DB_PASSWORD} --dbhost=${DB_HOST}
 
 # Install wordpress
-wp core install --allow-root --url="localhost" --title="My_website" --admin_user=${DB_USER} --admin_password=${DB_ROOT_PASSWORD} --admin_email=${DB_ROOT_EMAIL}
+wp core install --allow-root --url="mmakarov.42.fr" --title="My_website" --admin_user=${WP_USER} --admin_password=${WP_PASSWORD} --admin_email=${DB_ROOT_EMAIL}
 
-/usr/sbin/php-fpm7.4 -F
+# Create a wordpress user
+wp user create bob --role=author --user_pass=222 --allow-root
+
+exec /usr/sbin/php-fpm7.4 -F
