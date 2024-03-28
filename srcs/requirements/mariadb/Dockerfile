@@ -16,9 +16,12 @@ COPY ./conf/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
 COPY ./tools/db_script.sh /var/local/bin/
 # COPY ./tools/db_database.sql /var/local/bin/
 
+COPY ./tools/kill_pid1.sh /var/local/bin/
+
 # Give execute permissions to mysqld (daemon) and the script
 RUN chmod 555 /usr/sbin/mysqld
 RUN chmod 555 /var/local/bin/db_script.sh
+RUN chmod 555 /var/local/bin/kill_pid1.sh
 
 # Launch the script to install MariaDB
-CMD ["bash", "/var/local/bin/db_script.sh"]
+CMD ["bash", "/var/local/bin/kill_pid1.sh"]
