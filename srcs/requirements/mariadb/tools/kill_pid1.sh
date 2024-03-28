@@ -7,6 +7,6 @@ asyncRun() {
         wait
     done
 }
-asyncRun /db_script.sh $@
+asyncRun ./db_script.sh $@
 
 #source: https://github.com/docker-library/mysql/issues/47, jeremyVignelles

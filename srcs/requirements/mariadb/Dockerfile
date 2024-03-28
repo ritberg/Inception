@@ -16,6 +16,7 @@ COPY ./conf/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
 COPY ./tools/db_script.sh /var/local/bin/
 # COPY ./tools/db_database.sql /var/local/bin/
 
+# copy the script that kills PID1 
 COPY ./tools/kill_pid1.sh /var/local/bin/
 
 # Give execute permissions to mysqld (daemon) and the script
