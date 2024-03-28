@@ -34,6 +34,6 @@ wp config create --allow-root --dbname=${DB_NAME} --dbuser=${DB_USER} --dbpass=$
 wp core install --allow-root --url="mmakarov.42.fr" --title="My_website" --admin_user=${WP_USER} --admin_password=${WP_PASSWORD} --admin_email=${DB_ROOT_EMAIL}
 
 # Create a wordpress user
-wp user create bob --role=author --user_pass=222 --allow-root
+wp user create bob bob@gmail.com --role=author --user_pass=${BOB_PASSWORD} --allow-root
 
 exec /usr/sbin/php-fpm7.4 -F
