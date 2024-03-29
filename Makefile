@@ -29,9 +29,6 @@ down:
 
 restart: stop start
 
-logs:
-	$(DOCKER_COMPOSE) logs -f
-
 mkdir_data:
 	mkdir -p /home/mmakarov/data/mariadb; mkdir /home/mmakarov/data/wordpress
 
